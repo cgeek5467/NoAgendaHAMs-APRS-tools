@@ -54,7 +54,9 @@ $targetGRP = uc($ARGV[0]);
 my $is = new Ham::APRS::IS($IShost, $ISmycall, 'filter' => $ISfilter, 'appid' => $ISclient);
 $is->connect('retryuntil' => 3) || die "Failed to connect: $is->{error}";
 
-print "Connected $IShost monitoring '$targetGRP' on 'ANSRVR' ...\n";
+$GMTTime = gmtime(time); $Time = &UnixDate($GMTTime, '%Y-%m-%d %H:%M:%S');
+print "Connected $IShost at $Time UTC\n";
+print "Monitoring '$targetGRP' on 'ANSRVR' ...\n";
 print "Ctrl-C to stop\n";
 
 # Be a spinner ... and just spin and spin grabbing packets
@@ -102,8 +104,7 @@ for (;;)
          print "\n---\n";
 
          # What time is it!?!?
-         $GMTTime = gmtime(time);
-         $Time = &UnixDate($GMTTime, '%Y-%m-%d %H:%M:%S');
+         $GMTTime = gmtime(time); $Time = &UnixDate($GMTTime, '%Y-%m-%d %H:%M:%S');
 
          # Print something out. Your choices for packetdata appear to be:
          #    destination, dstcallsign, digipeaters, messageid, message, body,
