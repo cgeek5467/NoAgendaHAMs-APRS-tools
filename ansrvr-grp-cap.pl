@@ -4,7 +4,7 @@
 # ansrvr-grp-cap.pl
 # v0.0 -- aplpha --
 #
-# Mike Cleckner, KD2FDX, mcleckner@gmail.com
+# Mike Cleckner, KD2FDX
 #
 # Perl script using Ham::APRS::FAP to grab APRS packets.
 # You need to get it from CPAN and maybe other dependencies.
