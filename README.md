@@ -8,7 +8,8 @@ ansrvr-grp-cap.pl : grab packets for an ANSRVR group (specfied on command line) 
 ansrvr-grp-2rss.pl : grab packets for an ANSRVR group and create / append to an RSS feed. Display CQs.
 
 ------------------------------------------------------------
-Wake up fellow human resource and check out noagendashow.com
-Get your HAM license. Check out hamstudy.org
+Wake up fellow human resource and check out The No Agenda Show -- noagendashow.com
 
+Get your HAM license or upgrade --  hamstudy.org
 
+GitHub Repo short URL itm.im/4gsjq

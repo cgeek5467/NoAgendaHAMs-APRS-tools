@@ -2,9 +2,11 @@
 
 #
 # ansrvr-grp-cap.pl
-# v0.0 -- aplpha --
+# v0.1
 #
 # Mike Cleckner, KD2FDX
+#
+# GitHub Repo "cgeek5467/NoAgendaHAMs-APRS-tools" short URL http://itm.im/4gsjq
 #
 # Perl script using Ham::APRS::FAP to grab APRS packets.
 # You need to get it from CPAN and maybe other dependencies.
@@ -31,7 +33,7 @@ my $debugON = 0;
 my $IShost = "noam.aprs2.net:14580";
 my $ISmycall = "N0CALL";
 my $ISfilter = "g/ANSRVR"; # other tries "t/poimqstunw" "t/m g/ANSRVR"
-my $ISclient = "ansrvr-grp-cap v0.0 --alpha--";
+my $ISclient = "ansrvr-grp-cap.pl v0.1";
 
 my ($GMTTime,$Time);
 

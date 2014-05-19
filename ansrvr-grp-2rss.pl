@@ -6,6 +6,8 @@
 #
 # Mike Cleckner, KD2FDX
 #
+# GitHub Repo "cgeek5467/NoAgendaHAMs-APRS-tools" short URL http://itm.im/4gsjq
+#
 # Perl script using Ham::APRS::FAP to grab APRS packets.
 # You need to get it from CPAN and maybe other dependencies.
 # This will grab only messages sent to ANSRVR which are CQ command and for a specific group.
@@ -68,8 +70,8 @@ print "Monitoring '$targetGRP' on 'ANSRVR' ...\n";
 print "Ctrl-C to stop\n";
 
 # RSS Things you can customize for yourself
-my $rssMoreDescription = "\nCheck out \"The No Agenda Show\" http://noagendashow.com. ITM!"
-                       . "\nGet your HAM license or upgrade -- http://hamstudy.org";
+my $rssMoreDescription = "\nCheck out \"The No Agenda Show\" -- noagendashow.com -- ITM!"
+                       . "\nGet your HAM license or upgrade -- hamstudy.org";
 
 
 my $rss = new XML::RSS(version => '2.0');
@@ -174,8 +176,6 @@ for (;;)
          # Update pubDate
          $rss->channel (
             pubDate		=> "$rssTime",
-            description	=> "Messages sent to ANSRVR which are CQ command and for group ${targetGRP}"
-                         . ${rssMoreDescription},
          );
 
          $rss->add_item(
