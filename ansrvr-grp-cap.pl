@@ -2,7 +2,7 @@
 
 #
 # ansrvr-grp-cap.pl
-# v0.1
+# v0.2
 #
 # Mike Cleckner, KD2FDX
 #
@@ -33,7 +33,7 @@ my $debugON = 0;
 my $IShost = "noam.aprs2.net:14580";
 my $ISmycall = "N0CALL";
 my $ISfilter = "g/ANSRVR"; # other tries "t/poimqstunw" "t/m g/ANSRVR"
-my $ISclient = "ansrvr-grp-cap.pl v0.1";
+my $ISclient = "ansrvr-grp-cap.pl v0.2";
 
 my ($GMTTime,$Time);
 
@@ -52,6 +52,8 @@ if ($num_args != 1)
    exit;
 }
 $targetGRP = uc($ARGV[0]);
+
+my $packetFile = "/var/www/APRS/ANSRVR-${targetGRP}-packets.txt";
 
 my $is = new Ham::APRS::IS($IShost, $ISmycall, 'filter' => $ISfilter, 'appid' => $ISclient);
 $is->connect('retryuntil' => 3) || die "Failed to connect: $is->{error}";
@@ -106,7 +108,9 @@ for (;;)
          print "\n---\n";
 
          # What time is it!?!?
-         $GMTTime = gmtime(time); $Time = &UnixDate($GMTTime, '%Y-%m-%d %H:%M:%S');
+         $GMTTime = gmtime(time); 
+         $Time = &UnixDate($GMTTime, '%Y-%m-%d %H:%M:%S');
+         my $rssTime = &UnixDate($GMTTime, '%a, %d %b %Y %H:%M:%S UT');
 
          # Print something out. Your choices for packetdata appear to be:
          #    destination, dstcallsign, digipeaters, messageid, message, body,
@@ -119,6 +123,10 @@ for (;;)
          print "N:" . uc($msggrp) ." $msgslc\n";
 
          debug("$packetdata{origpacket}\n");
+
+         open (PACKETFILE, ">> $packetFile") || die "problem opening $packetFile\n";
+         print PACKETFILE "$rssTime#$packetdata{origpacket}\n";
+         close (PACKETFILE);
       }
 
       if ($debugON) { print "---\n"; while (my ($key, $value) = each (%packetdata)) { print "\t$key: $value\n"; } print "---\n"; }
